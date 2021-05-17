@@ -26,28 +26,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let randomizer = Int.random(in: 1...4)
         
         if randomizer == 1 {
-            let filter = CIFilter(name: "CIPhotoEffectChrome")
-            filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-            display(filter: filter!)
+            frankfilter()
         }
         
         if randomizer == 2 {
-            let filter = CIFilter(name: "CISepiaTone")
-            filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-            filter?.setValue(1.0, forKey: kCIInputIntensityKey)
-            display(filter: filter!)
+            applySepia()
         }
         
         if randomizer == 3 {
-            let filter = CIFilter(name: "CIPhotoEffectNoir")
-            filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-            display(filter: filter!)
+            applyNoir()
         }
         
         if randomizer == 4 {
-            let filter = CIFilter(name: "CIPhotoEffectProcess")
-            filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-            display(filter: filter!)
+            applyVintage()
         }
     }
     
@@ -59,7 +50,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let filter = CIFilter(name: "CIPhotoEffectChrome")
         filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-        display(filter: filter!)
+        let imageWithFilter: UIImage = filter?.value(forKey: kCIOutputImageKey)
+        let secondFilter = CIFilter(name: "CIPhotoEffecNoir")
+        secondFilter?.setValue(CIImage(image: imageWithFilter), forKey: kCIInputImageKey)
+        display(filter: imageWithFilter!)
     }
 
     @IBAction func applySepia() {
