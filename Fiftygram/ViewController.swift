@@ -51,9 +51,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let filter = CIFilter(name: "CIPhotoEffectChrome")
         filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
         let imageWithFilter: UIImage = filter?.value(forKey: kCIOutputImageKey)
-        let secondFilter = CIFilter(name: "CIPhotoEffecNoir")
-        secondFilter?.setValue(CIImage(image: imageWithFilter), forKey: kCIInputImageKey)
-        display(filter: imageWithFilter!)
+//        let secondFilter = CIFilter(name: "CIPhotoEffecNoir")
+//        secondFilter?.setValue(CIImage(image: imageWithFilter), forKey: kCIInputImageKey)
+        display(filter: filter!)
     }
 
     @IBAction func applySepia() {
